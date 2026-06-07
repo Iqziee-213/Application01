@@ -1,0 +1,45 @@
+﻿@page "/greeting"
+@rendermode InteractiveServer
+
+<div class="container mt-5">
+    <div class="card col-md-6 mx-auto shadow-sm border-primary">
+        <div class="card-header bg-primary text-white text-center">
+            <h4 class="mb-0">Application 1: Greeting Component</h4>
+        </div>
+        <div class="card-body p-4">
+            
+            <!-- Two-Way Data Binding Field -->
+            <div class="mb-4">
+                <label for="nameInput" class="form-label fw-bold">Enter Your Name:</label>
+                <input type="text" 
+                       id="nameInput" 
+                       class="form-control" 
+                       @bind="userName" 
+                       @bind:event="oninput" 
+                       placeholder="Type your name..." />
+                <small class="text-muted d-block mt-1">
+                    Demonstrating Two-Way Binding: Modifies the C# variable on every keystroke.
+                </small>
+            </div>
+
+            <hr />
+
+            <!-- One-Way Data Binding Output Display -->
+            <div class="alert alert-info mt-3 text-center" role="alert">
+                <h5 class="alert-heading fw-bold mb-1">Greeting Display</h5>
+                <p class="fs-5 mb-0">
+                    @(string.IsNullOrWhiteSpace(userName) ? "Hello, Guest! Please enter your name." : $"Hello, {userName}! Welcome to Blazor.")
+                </p>
+                <small class="text-muted d-block mt-1">
+                    Demonstrating One-Way Binding: Updates the view UI instantly from the component state.
+                </small>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@code {
+    // Component State Variable
+    private string userName { get; set; } = string.Empty;
+}
